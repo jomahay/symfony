@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+        
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+   
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="/">Home
+            <!--<span class="visually-hidden">(current)</span>-->
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ path('blog')}}">Articles</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ path('blog_create')}}">Creer un article</a>
+        </li>
+        {% if not app.user %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ path('security_login')}}">Connexion</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ path('security_logout')}}">Deconnexion</a>
+        </li>
+        {% endif %}
+       
+        
+      </ul>
+     
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+    {% block body %}{% endblock %}
+</div>
+       
+    </body>
+</html>

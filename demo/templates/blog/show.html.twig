@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<article>
+    <h2>{{article.title}}</h2>
+    <div class="metadata">{{ article.createdAt | date('d/m/y')}}</div>
+<div class="content">
+
+    
+    <img src="{{article.image}}" alt="">
+    <p>{{article.content | raw}}</p>
+
+
+</div>
+</article>
+<section class="commentaires">
+    <h1>{{ article.comments | length}} Commentaires : </h1>
+    {% for comment in article.comments %}
+    <div class="comment">
+        <div class="row">
+            <div class="col-3">
+               {{comment.author}}
+            </div>
+            <div class="col">
+                {{ comment.content | raw }}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+{% if app.user %}
+{{ form_start(commentForm)}}
+{{ form_row(commentForm.author,{'attr':{'placeholder':"Titre de l'article"}})}}
+{{ form_row(commentForm.content,{'attr':{'placeholder':"Titre de l'article"}})}}
+<button type="submit" class="btn btn-success">
+   
+      Enregistrer les comments
+</button>
+
+{{ form_end(commentForm)}}
+{% else %}
+<h2>Vous ne pouvez pas connecter </h2>
+{% endif %}
+{% endblock %}
