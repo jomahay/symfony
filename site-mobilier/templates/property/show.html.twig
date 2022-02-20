@@ -1,0 +1,11 @@
+{% extends 'base.html.twig'%}
+{% block title  property.title %}
+{% block body %}
+
+<div class="container mt-4">
+<h1>{{ property.title}} </h1> LOLOL
+<p>{{ property.description |nl2br}}</p>
+<p>{{ property.getHeadType}}</p>
+<a href="">contacter lee vendeur</a>
+</div>
+{% endblock %}

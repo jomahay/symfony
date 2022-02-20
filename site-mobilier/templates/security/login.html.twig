@@ -1,0 +1,18 @@
+{% extends 'base.html.twig'%}
+{% block title 'Accueil' %}
+{% block body %}
+
+<div class="jumbotron text-center">
+    
+<h1>Login</h1>
+<form method="post" action="{{path('login')}}">
+    <input type="text" name="_username" value="{{ last_username }}" >
+    <input type="password" name="_password" >
+     <button type="submit" class="btn btn-danger">valider</button>
+</form>
+</div>
+
+{% if error %}
+       <div class="alert alert-danger">{{ error.messageKey |trans(error.messagedata,'security') }}</div> 
+    {% endif %}
+{% endblock %}
